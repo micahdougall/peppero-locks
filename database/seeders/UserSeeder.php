@@ -21,11 +21,13 @@ class UserSeeder extends Seeder
     public function run(): void
     {
 
-        /** @var  $zones */
-        $zones = Zone::all()->take(9)->toArray(); // Exclude zone 10 from zonal access.
+        /** @var array<\App\Models\Zone> $zones Excludes Zone 10 from zonal access */
+        $zones = Zone::all()->take(9)->toArray();
+
+        /** @var array<\App\Models\Door> $doors All seeded Doors */
         $doors = Door::all()->toArray();
 
-        // Create Users and attach zonal access.
+        // Seed Users and attach zonal access.
         foreach (range(1, self::USER_COUNT) as $_) {
             User::factory()
                 ->create()
@@ -39,23 +41,23 @@ class UserSeeder extends Seeder
         }
 
         // Make 2 user admins.
-        User::where('id', 1)
+        User::query()->where('id', 1)
             ->orWhere('id', 5)
             ->update(['admin_flag' => true]);
 
-        // Expire a single user.
-        User::where('id', 3)
+        // Expire a single User.
+        User::query()->where('id', 3)
             ->update(['expiry_date' => Carbon::now()->subDays(1)->toDate()]);
 
-        // Attach random direct door access for a single user.
-        User::where([
+        // Attach random direct Door access for a single User.
+        User::query()->where([
                 ['admin_flag', false],
                 ['expiry_date', '>', Carbon::now()]
             ])
             ->first()
             ->doors()->attach(
                 array_map(
-                    // Create an array of random size from the door ids.
+                    // Create an array of random size from the Door ids.
                     static fn ($i) => $doors[$i]['id'],
                     (array) array_rand($doors, rand(1, count($doors)))
                 )

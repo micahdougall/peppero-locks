@@ -15,7 +15,8 @@ class DoorSeeder extends Seeder
      */
     public function run(): void
     {
-        $zones = Zone::select("*")->skip(1)->take(9)->get(); // No doors in Zone 1.
+        /** @var \Illuminate\Database\Eloquent\Collection<\App\Models\Zone> $zones All Zones except Zone 1 */
+        $zones = Zone::query()->select("*")->skip(1)->take(9)->get();
 
         array_map(
             static fn ($n) => Door::factory()
@@ -24,8 +25,11 @@ class DoorSeeder extends Seeder
                     'name' => "DR-{$n}",
                     'zone_id' => $zones[rand(0, count($zones)-1)]->id
                 ]),
-            // Use a unique array of 3-digit random numbers to seed Door id and name.
-            array_unique(array_map(static fn ($i) => mt_rand(100, 999), range(0, 40)))
+            // Supply a unique array of 3-digit random numbers to seed Door id.
+            array_unique(array_map(
+                static fn ($i) => mt_rand(100, 999),
+                range(1, 40)
+            ))
         );
     }
 }

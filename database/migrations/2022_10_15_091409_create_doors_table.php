@@ -14,14 +14,9 @@ return new class extends Migration {
     {
         Schema::create('doors', static function (Blueprint $table) {
             $table->id();
-            $table->foreignId('zone_id');
+            $table->foreignId('zone_id')->constrained('zones')->onDelete('cascade')->onUpdate('cascade');
             $table->string('name');
-//            $table->unsignedBigInteger('zone_id');
             $table->timestamps();
-
-//            $table->foreign('zone_id')->references('id')->on('zones')
-//                ->onDelete('cascade')
-//                ->onUpdate('cascade');
         });
     }
 

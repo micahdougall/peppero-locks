@@ -11,13 +11,20 @@ class Zone extends Model
 {
     use HasFactory;
 
-//    protected $guarded = [];
+    protected $guarded = [];
 
+    /**
+     * @return HasMany Relation which shows all the Doors which are located in
+     * the Zone.
+     */
     public function doors(): HasMany
     {
         return $this->hasMany(Door::class);
     }
 
+    /**
+     * @return BelongsToMany Relation which Users have access to the Zone.
+     */
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'zonal_access')

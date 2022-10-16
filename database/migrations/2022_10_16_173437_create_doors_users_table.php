@@ -15,17 +15,9 @@ return new class extends Migration
     {
         Schema::create('direct_access', static function (Blueprint $table) {
             $table->primary(['user_id', 'door_id']);
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('door_id');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('door_id')->constrained('doors')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-
-            $table->foreign('door_id')->references('id')->on('doors')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
         });
     }
 
