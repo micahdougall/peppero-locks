@@ -34,7 +34,6 @@ class User extends Model
         return $this->belongsToMany(Door::class, 'direct_access');
     }
 
-
     /**
      * Manual implementation of hasManyThrough to show the transitive relation
      * of the Doors which the User can access via its Zones.
@@ -71,6 +70,14 @@ class User extends Model
         return (
             $this->doors->contains($door) || $this->zoneDoors->contains($door) || $this->isAdmin()
         ) && $this-> isActive();
+    }
+
+    /**
+     * @param Door $door Adds direct access to the supplied Door.
+     */
+    public function addAccessToDoor(Door $door): void
+    {
+        $this->doors()->attach($door);
     }
 
     /**
