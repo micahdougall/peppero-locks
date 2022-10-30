@@ -13,8 +13,6 @@
 
 # tl;dr 
 
-Please see `README`.*md* for optimal reading.
-
 This README.md details the Eloquent Model relationships and functionality included in *Peppero Locks*. It is best rendered in an IDE which provides links to classes and migrations (contents page links will work in VSCode but not PHPStorm).
 
 **All class files are completed and adequately commented, so this document is an optional read.**
@@ -190,11 +188,11 @@ In the [UserSeeder](Database/Seeders/UserSeeder.php), this has been done for Use
 
 ## Zonal Access
 
-Once again, the relationship between Users and Zones is a *many-to-many* relationship, so an additional *pivot* table, `zonal_access` stores these relations (see [create_users_zones_table](database/migrations/2022_10_16_173437_create_doors_users_table.php)).
+Once again, the relationship between Users and Zones is a *many-to-many* relationship, so an additional *pivot* table, `zonal_access` stores these relations (see [create_users_zones_table](database/migrations/2022_10_15_095419_create_users_zones_table.php)).
 
 The database has been seeded with 10 zones using the [ZoneSeeder](Database/Seeders/ZoneSeeder.php) class, 1 of which contains no doors (Zone 1) and one of which has no zonal access given to any users (Zone 10).
 
-The [Zones](App/Zone.php) class shows the related Doors and Users via `doors` and `users` properties respectively:
+The [Zones](App/Models/Zone.php) class shows the related Doors and Users via `doors` and `users` properties respectively:
 
 ```php
 /** Get a collection of doors assigned to Zone 2 */
@@ -360,7 +358,7 @@ This method in the [User](App/Models/User.php) class groups together the three p
 
 All users must include a value for `expiry_date`, after which point they will not be able to access any doors, regardless of their admin status.
 
-The status of a user can be checked using the `isActive` method, and *manually* expired using `expire`.
+The status of a user can be checked using the `isActive` method in the [User](App/Models/User.php) class, and *manually* expired using  the `expire` method.
 
 ```php
 /** Manually expire an active user */
