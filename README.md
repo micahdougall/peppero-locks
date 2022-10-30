@@ -13,13 +13,15 @@
 
 # tl;dr 
 
+Please see `README`.*md* for optimal reading.
+
 This README.md details the Eloquent Model relationships and functionality included in *Peppero Locks*. It is best rendered in an IDE which provides links to classes and migrations (contents page links will work in VSCode but not PHPStorm).
 
 **All class files are completed and adequately commented, so this document is an optional read.**
 
 Screenshots from the `php artisan tinker` CLI can be seen in the final section of this readme.
 
-The full project repository can also be found on [GitHub](https://github.com/micahdougall/peppero-locks).
+The full project repository can also be found on [GitHub](https://github.com/micahdougall/peppero-locks). Access to the private repository has been granted to `RGayaSU`.
 
 
 
@@ -324,6 +326,32 @@ This method in the [User](App/Models/User.php) class groups together the three p
 >>> User::find(2)->hasAccessToDoor(Door::find(789));
 
 => true
+
+/** Verify that an expired user doesn't have access to doors */
+>>> User::find(3)->isActive();
+
+=> false
+
+>>> User::find(3)->zoneDoors;
+
+=> Illuminate\Support\Collection {#4608
+     all: [
+       App\Models\Door {#4639
+         id: 176,
+         zone_id: 2,
+         name: "DR-176",
+         created_at: "2022-10-16 22:45:30",
+         updated_at: "2022-10-16 22:45:30",
+       },
+
+    ...
+    
+    ]
+}
+
+>>> User::find(3)->hasAccessToDoor(Door::find(176));
+
+=> false
 ```
 
 <br>
