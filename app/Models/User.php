@@ -15,6 +15,28 @@ class User extends Model
     protected $guarded = [];
 
     /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token'
+    ];
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
+    public function __construct(array $attributes = [])
+    {
+        $this->attributes['expiry_date'] = Carbon::now()->addDays(365);
+        $this->attributes['password'] = 'password';
+        parent::__construct($attributes);
+    }
+
+    /**
      * @return BelongsToMany The relation which shows all the Zones which are
      * accessible by the User.
      */

@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\DoorController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ZoneController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +20,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+
+Route::get('login', [SessionsController::class, 'create'])->name('login');
+Route::post('sessions', [SessionsController::class, 'store']);
+Route::post('logout', [SessionsController::class, 'destroy']);
+
+Route::get('register', [RegisterController::class, 'create']);
+Route::post('register', [RegisterController::class, 'store']);
+
+Route::resource('users', UserController::class);
+Route::resource('zones', ZoneController::class);
+Route::resource('doors', DoorController::class);
+
+//Route::resource('register')

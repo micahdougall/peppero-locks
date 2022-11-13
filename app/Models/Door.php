@@ -48,7 +48,7 @@ class Door extends Model
     public function zoneUsers(): Attribute
     {
         return Attribute::get(
-            get: fn($value) => $this->zone->users
+            get: fn ($value) => $this->zone->users
         );
     }
 }

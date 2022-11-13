@@ -17,8 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
+//            $table->string('username');
+            $table->string('email');
             $table->boolean('admin_flag')->default(false);
             $table->date('expiry_date');
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

@@ -12,16 +12,16 @@
 
                 <div class="ml-12">
                     <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                        Manage Users.
+                        Manage paople.
                     </div>
                 </div>
             </div>
             <div class="p-6">
                 <div class="flex items-center">
                     <div class="ml-4 text-lg leading-7 font-semibold">
-                        <a href="{{ route('login') }}"
+                        <a href="/route"
                            class="underline text-gray-900 dark:text-white"
-                        >Login</a>
+                        >Alpine</a>
                     </div>
                 </div>
 
