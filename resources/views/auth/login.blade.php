@@ -4,7 +4,7 @@
             <x-panel>
                 <h1 class="text-center font-bold text-xl">Log in</h1>
 
-                <form method="POST" action="/sessions" class="mt-10">
+                <form method="POST" action="/login" class="mt-10">
                     @csrf
 
                     <x-form.input name="email" type="email" autocomplete="username"/>

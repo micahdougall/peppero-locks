@@ -23,7 +23,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('login', [SessionsController::class, 'create'])->name('login');
-Route::post('sessions', [SessionsController::class, 'store']);
+//Route::post('auth', [SessionsController::class, 'store']);
 Route::post('logout', [SessionsController::class, 'destroy']);
 
 Route::get('register', [RegisterController::class, 'create']);
