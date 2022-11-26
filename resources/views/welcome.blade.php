@@ -36,8 +36,8 @@
     <div>
         <h1>TODO:</h1>
         <ul>
-            <li>Remove password from edit user</li>
-            <li>User to only see their zones and doors</li>
+{{--            <li>Remove password from edit user</li>--}}
+{{--            <li>User to only see their zones and doors</li>--}}
             <li>Reshape bar on top</li>
             <li>Visibility of options for user v admin</li>
             <li>Password resets</li>
@@ -60,6 +60,9 @@
             <li>Update messages</li>
             <li>Change footer and header</li>
             <li>Add VueJS</li>
+            <li>Add aiuth to logout middleware</li>
+            <li>Move auth to auth folder</li>
+            <li>Add note for 0 zones</li>
         </ul>
     </div>
 </x-layout>

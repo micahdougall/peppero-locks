@@ -23,6 +23,12 @@
                      x-transition:leave="transition duration-200 transform"
                      x-transition:leave-end="scale-90 opacity-0"
                 >
+                    <a href={{ route('zones.index') }}
+                        @class([
+                             'block hover:bg-green-600 hover:text-white text-sm px-4 py-1',
+                             'text-green-800 bg-green-50' => request()->is('zones')
+                         ])
+                    >My zones</a>
                     <a href={{ route('zones.create') }}
                         @class([
                              'block hover:bg-green-600 hover:text-white text-sm px-4 py-1',

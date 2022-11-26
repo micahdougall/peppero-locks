@@ -26,15 +26,19 @@ class User extends Authenticatable
         'remember_token'
     ];
 
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
+    protected $casts = [
+        'email_verified_at' => 'datetime'
+    ];
+
+//    public function setPasswordAttribute($password)
+//    {
+//        $this->attributes['password'] = bcrypt($password);
+//    }
 
     public function __construct(array $attributes = [])
     {
         $this->attributes['expiry_date'] = Carbon::now()->addDays(365);
-        $this->attributes['password'] = 'password';
+//        $this->attributes['password'] = 'password';
         parent::__construct($attributes);
     }
 

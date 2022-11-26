@@ -16,7 +16,7 @@
             <x-form.input textarea name="first_name" :value="old('first_name', $user->first_name)"/>
             <x-form.input textarea name="last_name" :value="old('last_name', $user->last_name)"/>
             <x-form.input textarea name="email" :value="old('email', $user->email)"/>
-            <x-form.input textarea name="password" :value="old('password', $user->password)"/>
+{{--            <x-form.input textarea name="password" :value="old('password', $user->password)"/>--}}
 
 {{--            <x-form.field>--}}
 {{--                <x-form.label name="Nationalities"/>--}}

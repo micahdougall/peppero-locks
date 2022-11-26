@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('admin_flag')->default(false);
             $table->date('expiry_date');
             $table->string('password');
-            $table->rememberToken();
+//            $table->rememberToken();
             $table->timestamps();
         });
     }

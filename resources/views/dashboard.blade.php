@@ -1,33 +1,31 @@
 <x-layout>
-    <x-setting heading="Manage Doors" class="max-w-6xl">
+    <x-setting heading="Manage Zones" class="max-w-6xl">
         <div class="flex flex-col">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                         <table class="min-w-full divide-y divide-gray-200">
                             <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach($doors as $door)
+                            @foreach($zones as $zone)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="text-sm font-semibold text-gray-500 hover:text-gray-900">
-                                                <a href="/doors/{{ $door->id }}">
-                                                    {{ $door->name }}
+                                                <a href="/zones/{{ $zone->id }}">
+                                                    {{ $zone->name }}
                                                 </a>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="text-sm font-semibold text-gray-500 hover:text-gray-900">
-                                                <a href="/zones/{{ $door->zone }}">
-                                                    {{ $door->zone->name }}
-                                                </a>
-                                            </div>
+                                        <div class="flex items-center space-x-2">
+                                            @foreach($zone->doors as $door)
+                                                <x-door-button :door="$door"/>
+                                            @endforeach
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="/doors/{{ $door->id }}/edit"
+                                        <a href="/zones/{{ $zone->id }}/edit"
                                            class="px-4 py-1 text-xs leading-5 font-semibold rounded shadow-sm
                                            text-gray-800 bg-gray-100 uppercase
                                            hover:bg-green-700 hover:text-white focus:ring hover:shadow-lg">
@@ -35,7 +33,7 @@
                                         </a>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <form method="POST" action="/doors/{{ $door->id }}">
+                                        <form method="POST" action="/zones/{{ $zone->id }}">
                                             @csrf
                                             @method('DELETE')
 

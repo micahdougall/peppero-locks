@@ -27,8 +27,9 @@ class UserFactory extends Factory
             'admin_flag' => false,
             // Expires on a random date in next 5 years
             'expiry_date' => Carbon::now()->addDays(rand(1, 5 * 365))->toDate(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
+//            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => bcrypt('password')
+//            'remember_token' => Str::random(10),
         ];
     }
 }

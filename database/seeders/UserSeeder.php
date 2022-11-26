@@ -40,10 +40,35 @@ class UserSeeder extends Seeder
                 );
         }
 
+        // Control admin
+        User::factory()->create([
+            'first_name' => 'Randell',
+            'last_name' => 'Gaya',
+            'email' => 'randell.gaya@swansea.ac.uk',
+            'admin_flag' => true,
+            'expiry_date' => Carbon::now()->addYear(),
+            'password' => bcrypt('password')
+        ]);
+
+        // Control user (non-admin)
+        User::factory()->create([
+            'first_name' => 'Micah',
+            'last_name' => 'Dougall',
+            'email' => '2032638@swansea.ac.uk',
+            'expiry_date' => Carbon::now()->addYear(),
+            'password' => bcrypt('password')
+        ])->zones()->attach(
+            array_map(
+            // Create an array of random size from the zone ids.
+                static fn ($i) => $zones[$i]['id'],
+                (array) array_rand($zones, rand(1, count($zones)))
+            )
+        );
+
         // Make 2 user admins.
-        User::query()->where('id', 1)
-            ->orWhere('id', 5)
-            ->update(['admin_flag' => true]);
+//        User::query()->where('id', 1)
+//            ->orWhere('id', 5)
+//            ->update(['admin_flag' => true]);
 
         // Expire a single User.
         User::query()->where('id', 3)

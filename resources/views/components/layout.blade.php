@@ -30,7 +30,7 @@
             <div class="flex justify-center items-center">
                 @auth
                     <div class="space-x-2">
-                        <button class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name }}!</button>
+                        <button class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->first_name }}!</button>
 
                         <a class="text-xs font-bold uppercase"
                            href="#"
@@ -38,12 +38,12 @@
                            @click.prevent="document.querySelector('#logout-form').submit();"
                         >Log Out</a>
 
-                        <form id="logout-form" method="POST" action="/logout" class="hidden">
+                        <form id="logout-form" method="POST" action="{{ route('logout') }}" class="hidden">
                             @csrf
                         </form>
                     </div>
                 @else
-                    <a href="/login" class="ml-5 text-xs font-bold uppercase">Log In</a>
+                    <a href="{{ route('login') }}" class="ml-5 text-xs font-bold uppercase">Log In</a>
                 @endauth
             </div>
         </div>
