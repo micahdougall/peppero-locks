@@ -1,5 +1,6 @@
-<x-layout>
-    <x-setting :heading="'Edit ' . $zone->name" class="max-w-3xl">
+<x-layout :heading="'Edit ' . $zone->name">
+    <x-section>
+{{--    <x-navigation :heading="'Edit ' . $zone->name" class="max-w-3xl">--}}
         <form method="POST" action="/zones/{{ $zone->id }}" enctype="multipart/form-data"
 {{--            x-data="{--}}
 {{--                nationalities: {{ $nationalities }},--}}
@@ -24,10 +25,11 @@
 {{--                </div>--}}
 {{--            </x-form.field>--}}
 
-            <x-form.error name="name"/>
+{{--            <x-form.error name="name"/>--}}
 
             <x-form.button>Update</x-form.button>
         </form>
 
-    </x-setting>
+    </x-section>
+{{--    </x-navigation>--}}
 </x-layout>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Door;
 use App\Models\Zone;
 use Illuminate\Validation\Rule;
+use function PHPUnit\Framework\isNull;
 
 class DoorController
 {
@@ -24,7 +25,9 @@ class DoorController
     public function store(Door $door)
     {
         Door::factory()->create($this->validateDoor($door));
-        return redirect()->route('doors.index')->with('success', request('name') . ' successfully created.');
+        return redirect()
+            ->route('doors.index')
+            ->with('success', request('name') . ' created.');
     }
 
     public function create()
@@ -42,9 +45,11 @@ class DoorController
 
     public function update(Door $door)
     {
-//        ddd(request());
+        $oldName = $door->name;
         $door->update($this->validateDoor($door));
-        return redirect()->route('doors.index')->with('success', 'Door successfully updated');
+        return redirect()
+            ->route('doors.index')
+            ->with('success', $oldName . ' updated');
     }
 
     /**
@@ -53,7 +58,9 @@ class DoorController
     public function destroy(Door $door)
     {
         $door->deleteOrFail();
-        return redirect()->route('doors.index')->with('success', 'Door successfully deleted');
+        return redirect()
+            ->route('doors.index')
+            ->with('success', $door->name . ' deleted');
     }
 
     protected function validateDoor(Door|null $door = null): array
@@ -65,7 +72,7 @@ class DoorController
                 'max:10',
                 Rule::unique('doors', 'name')->ignore($door)
             ],
-            'zone_id' => ['required', Rule::exists('zones', 'id')]
+            'zone_id' => [Rule::exists('zones', 'id')]
         ]);
     }
 }

@@ -1,5 +1,6 @@
-<x-layout>
-    <x-setting :heading="'Edit ' . $user->title . ' ' . $user->first_name . ' ' . $user->surname" class="max-w-3xl">
+<x-layout :heading="'Edit ' . $user->title . ' ' . $user->first_name . ' ' . $user->surname">
+    <x-section>
+{{--    <x-navigation :heading="'Edit ' . $user->title . ' ' . $user->first_name . ' ' . $user->surname" class="max-w-3xl">--}}
         <form method="POST" action="/users/{{ $user->id }}" enctype="multipart/form-data"
 {{--            x-data="{--}}
 {{--                nationalities: {{ $nationalities }},--}}
@@ -42,5 +43,6 @@
             <x-form.button>Update</x-form.button>
         </form>
 
-    </x-setting>
+{{--    </x-navigation>--}}
+    </x-section>
 </x-layout>

@@ -1,29 +1,36 @@
-<x-layout>
-    <x-panel class="bg-gray-50 mt-6 w-6/12">
-        <article class="flex space-x-4">
-            <div style="flex-shrink: 1">
-                <img src="https://i.pravatar.cc/200?u={{ $door->id }}" alt="" style="width: 100px" class="rounded-xl"/>
-            </div>
-
-            <div>
-                <header class="mb-2">
-                    <h3 class="font-bold">{{ $door->title . ' ' . $door->first_name . ' ' . $door->surname }}</h3>
-                </header>
-                <p class="italic">
-                    {{ $door->address }}
-                </p>
-                <p class="text-xs mt-6 text-gray-400">
-                    <time>Joined {{ $door->created_at->diffForHumans() }}</time>
-                </p>
-
-                <div class="flex space-x-2">
-                    @foreach ($door->nationalities as $nationality)
-                        <div class="space-x-2 mt-6">
-                            <x-nationality-button :nationality="$nationality"/>
-                        </div>
-                    @endforeach
+<x-layout heading="{{ $door->name }}">
+    <x-section>
+        <div>
+            <div class="flow-root">
+                <div>
+                    <header class="mb-2 float-left">
+                        <h3 class="font-bold text-gray-600">{{ $door->name }}</h3>
+                    </header>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-600 italic float-right">
+                        Unique ID: {{ $door->id }}
+                    </p>
                 </div>
             </div>
-        </article>
-    </x-panel>
+
+            <img class="py-3 px-2"
+                 src="/images/doors.jpg"
+                 alt="Zone plan overiew" width="400" height="16">
+
+            <hr>
+
+            <div class="mt-4 text-sm font-semibold text-gray-5 hover:text-gray-900">
+                <a href="/zones/{{ $door->zone ? $door->zone->id : '' }}">
+                    {{ $door->zone ? $door->zone->name : 'No Zone' }}
+                </a>
+            </div>
+
+            <div class="">
+                <p class="text-xs mt-6 text-gray-400">
+                    <time>Created {{ $door->created_at->diffForHumans() }}</time>
+                </p>
+            </div>
+        </div>
+    </x-section>
 </x-layout>

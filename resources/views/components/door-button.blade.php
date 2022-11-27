@@ -1,12 +1,12 @@
 @props(['door'])
 <div
-    class="flex px-3 py-1 border border-green-600 rounded-full text-green-600 text-xs uppercase font-semibold space-x-1 space-y-1 hover:border-green-700 hover:text-green-700 hover:bg-green-50">
+    class="flex px-3 py-1 space-x-1 space-y-1
+           border-y rounded-full border-cyan-500 shadow-sm shadow-cyan-500/50
+           text-xs uppercase font-semibold text-cyan-600
+           hover:border-cyan-700 hover:text-cyan-700 hover:bg-cyan-50">
     <div>
-        <a href="/?category={{ $door->id }}"
+        <a href="/doors/{{ $door->id }}"
            style="font-size: 10px">{{ $door->name }}
         </a>
     </div>
-{{--    <div>--}}
-{{--        <img src="/images/{{ $nationality->name }}.svg" alt="nationality flag" style="width: 10px" class="rounded-sm"/>--}}
-{{--    </div>--}}
 </div>

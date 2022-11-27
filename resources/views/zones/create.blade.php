@@ -1,5 +1,6 @@
-<x-layout>
-    <x-setting heading="Create New Zone" class="max-w-3xl">
+<x-layout heading="Create New Zone">
+    <x-section>
+{{--    <x-navigation heading="Create New Zone" class="max-w-3xl">--}}
         <form method="POST" action="/zones" enctype="multipart/form-data"
 {{--            x-data="{--}}
 {{--                nationalities: {{ $nationalities }}--}}
@@ -20,6 +21,7 @@
 
             <x-form.button>Add</x-form.button>
         </form>
-    </x-setting>
+{{--    </x-navigation>--}}
+    </x-section>
 </x-layout>
 

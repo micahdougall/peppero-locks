@@ -1,29 +1,43 @@
-<x-layout>
-    <x-panel class="bg-gray-50 mt-6 w-6/12">
-        <article class="flex space-x-4">
-{{--            <div style="flex-shrink: 1">--}}
-{{--                <img src="https://i.pravatar.cc/200?u={{ $zone->id }}" alt="" style="width: 100px" class="rounded-xl"/>--}}
-{{--            </div>--}}
+<x-layout heading="{{ $zone->name }}">
+    <x-section>
+        <div>
+            <div class="flow-root">
+                <div>
+                    <header class="mb-2 float-left">
+                        <h3 class="font-bold text-gray-600">{{ $zone->name }}</h3>
+                    </header>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-600 italic float-right">
+                        Unique ID: {{ $zone->id }}
+                    </p>
+                </div>
+            </div>
 
-            <div>
-                <header class="mb-2">
-                    <h3 class="font-bold">{{ $zone->name }}</h3>
-                </header>
-                <p class="italic">
-                    {{ $zone->is }}
-                </p>
+            <img class="py-3 px-2"
+                 src="/images/zones.png"
+                 alt="Zone plan overiew" width="400" height="16">
+
+            <hr>
+
+            @if($zone->doors->count())
+                <h3 class="mt-4 text-sm font-semibold text-gray-5 hover:text-gray-900">Doors</h3>
+            @else
+                <h3 class="mt-4 text-sm font-semibold text-gray-5 hover:text-gray-900">No doors assigned to this zone</h3>
+            @endif
+
+            <div class="flex space-x-2 mt-4">
+                <div class="grid grid-cols-5 gap-4 place-items-stretch">
+                    @foreach ($zone->doors as $door)
+                        <x-door-button :door="$door"/>
+                    @endforeach
+                </div>
+            </div>
+            <div class="">
                 <p class="text-xs mt-6 text-gray-400">
                     <time>Created {{ $zone->created_at->diffForHumans() }}</time>
                 </p>
-
-{{--                <div class="flex space-x-2">--}}
-{{--                    @foreach ($zone->nationalities as $nationality)--}}
-{{--                        <div class="space-x-2 mt-6">--}}
-{{--                            <x-nationality-button :nationality="$nationality"/>--}}
-{{--                        </div>--}}
-{{--                    @endforeach--}}
-{{--                </div>--}}
             </div>
-        </article>
-    </x-panel>
+        </h3>
+    </x-section>
 </x-layout>
