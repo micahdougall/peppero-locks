@@ -26,9 +26,7 @@ class UserController
         return redirect()
             ->route('users.index')
             ->with(
-                'success',
-                'New account (' . request('first_name') . ') successfully created.'
-            );
+                'success', request('first_name') . ' created');
     }
 
     public function create()
@@ -42,7 +40,6 @@ class UserController
         return request()->validate([
             'first_name' => ['required', 'max:255'],
             'last_name' => ['required', 'max:255'],
-//            'username' => ['required', 'min:3', 'max:255', Rule::unique('users', 'username')],
             'email' => [
                 'required',
                 'email',
@@ -60,8 +57,11 @@ class UserController
 
     public function update(User $user)
     {
+        $oldName = $user->first_name;
         $user->update($this->validateUser($user));
-        return redirect()->route('users.index')->with('success', 'Person successfully updated');
+        return redirect()
+            ->route('users.index')
+            ->with('success', $oldName . ' updated');
     }
 
     /**
@@ -70,6 +70,8 @@ class UserController
     public function destroy(User $user)
     {
         $user->deleteOrFail();
-        return redirect()->route('users.index')->with('success', 'User deleted');
+        return redirect()
+            ->route('users.index')
+            ->with('success', $user->first_name . ' deleted');
     }
 }

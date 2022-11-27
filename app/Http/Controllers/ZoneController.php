@@ -23,7 +23,9 @@ class ZoneController
     public function store(Zone $zone)
     {
         Zone::factory()->create($this->validateZone($zone));
-        return redirect()->route('zones.index')->with('success', request('name') . ' created');
+        return redirect()
+            ->route('zones.index')
+            ->with('success', request('name') . ' created');
     }
 
     public function create()
@@ -40,7 +42,9 @@ class ZoneController
     {
         $oldName = $zone->name;
         $zone->update($this->validateZone($zone));
-        return redirect()->route('zones.index')->with('success', $oldName . ' updated');
+        return redirect()
+            ->route('zones.index')
+            ->with('success', $oldName . ' updated');
     }
 
     /**
@@ -49,7 +53,9 @@ class ZoneController
     public function destroy(Zone $zone)
     {
         $zone->deleteOrFail();
-        return redirect()->route('zones.index')->with('success', $zone->name . ' deleted');
+        return redirect()
+            ->route('zones.index')
+            ->with('success', $zone->name . ' deleted');
     }
 
     protected function validateZone(Zone|null $zone = null): array

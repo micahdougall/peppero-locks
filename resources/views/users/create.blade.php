@@ -1,11 +1,6 @@
 <x-layout heading="Create New User">
-{{--    <x-navigation heading="Create New User" class="max-w-3xl">--}}
-    <x-section class="w-96">
-        <form method="POST" action="/users" enctype="multipart/form-data"
-{{--            x-data="{--}}
-{{--                nationalities: {{ $nationalities }}--}}
-{{--            }"--}}
-        >
+    <x-content class="w-96">
+        <form method="POST" action="/users" enctype="multipart/form-data">
             @csrf
 
             <x-form.input name="first_name"/>
@@ -59,16 +54,6 @@
                 >
             </div>
 
-{{--            </div>--}}
-{{--            <x-form.field>--}}
-{{--                <x-form.label name="Nationalities"/>--}}
-{{--                <div class="flex space-x-2">--}}
-{{--                    @foreach($nationalities as $nationality)--}}
-{{--                        <x-form.nationality-select :nationality="$nationality"/>--}}
-{{--                    @endforeach--}}
-{{--                </div>--}}
-{{--            </x-form.field>--}}
-
 {{--            @if ($errors->any())--}}
 {{--                <div class="alert alert-danger">--}}
 {{--                    <ul>--}}
@@ -82,6 +67,6 @@
             <x-form.button>Add</x-form.button>
         </form>
 
-    </x-section>
+    </x-content>
 </x-layout>
 

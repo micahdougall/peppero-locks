@@ -1,45 +1,38 @@
-<x-layout heading="Home">
-    <div>
-        <h1>TODO:</h1>
-        <ul>
-{{--            <li>Remove password from edit user</li>--}}
-{{--            <li>User to only see their zones and doors</li>--}}
-{{--            <li>Reshape bar on top</li>--}}
-            <li>Visibility of options for user v admin</li>
-            <li>Password resets</li>
-            <li>Mail intercept</li>
-            <li>Read slides</li>
-            <li>Read coursework brief</li>
-            <li>Compare with Randell's version</li>
-{{--            <li>Logout via user avatar</li>--}}
-            <li>Add readme</li>
-            <li>Test thoroughly</li>
-            <li>Home page</li>
-            <li>Back button from user/zone/door</li>
-{{--            <li>Move Admin button User</li>--}}
-{{--            <li>More info on summary card</li>--}}
-            <li>Add all permutations to seeder</li>
-{{--            <li>door or zone button to filter on that zone</li>--}}
-{{--            <li>Drill down on zone</li>--}}
-{{--            <li>Drill down on door</li>--}}
-            <li>Check if deleting zone should delete door</li>
-{{--            <li>Update messages</li>--}}
-            <li>Change footer and header</li>
-            <li>Add VueJS</li>
-            <li>Add aiuth to logout middleware</li>
-            <li>Move auth to auth folder</li>
-{{--            <li>Add note for 0 zones</li>--}}
-            <li>Attach doors on zone edit</li>
-            <li>Check that tailwind works</li>
-{{--            <li>Paginate lists</li>--}}
-{{--            <li>Doors zone id for save</li>--}}
-            <li>List doors or zones to attach to user etc</li>
-            <li>Center menu items</li>
-            <li>Take out reusable components</li>
-            <li>Detlet unused components</li>
-            <li>Update all route names</li>
-{{--            <li>Fix user card</li>--}}
-            <li>Guest auth for all urls</li>
-        </ul>
+<x-layout heading="">
+    <div class="w-full space-y-3 mr-20">
+        <h1 class="text-4xl text-cyan-600 text-bold mt-10">
+            Peppero
+        </h1>
+        <p class="text-xl text-gray-800 text-semibold">
+            Lock Management System
+        </p>
+        <p class="text-gray-500 py-4">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi doloribus est fugit qui, quos recusandae ut! Assumenda deleniti dolorum, exercitationem facere laborum nihil, provident quia quod rerum sint, voluptates voluptatum.
+        </p>
+
+        @guest
+            <div class="flex space-x-2 justify-center">
+                <a href="{{ route('login') }}"
+                   class="px-6 py-2 text-xs rounded shadow-md
+                  text-white font-semibold uppercase
+                  bg-amber-400 hover:bg-amber-500 focus:outline-none focus:ring hover:shadow-lg">
+                    Log in
+                </a>
+            </div>
+        @endguest
     </div>
+    <div>
+        <div>
+            <img class="py-3 px-2"
+                 src="/images/zones.png"
+                 alt="Zone plan overiew" width="400" height="16">
+        </div>
+        <div>
+            <img class="py-3 px-2"
+                 src="/images/doors.jpg"
+                 alt="Zone plan overiew" width="400" height="16">
+            <hr>
+        </div>
+    </div>
+
 </x-layout>

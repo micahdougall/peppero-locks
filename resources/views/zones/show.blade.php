@@ -1,5 +1,5 @@
 <x-layout heading="{{ $zone->name }}">
-    <x-section>
+    <x-content>
         <div>
             <div class="flow-root">
                 <div>
@@ -22,7 +22,7 @@
 
             @if($zone->doors->count())
                 <h3 class="mt-4 text-sm font-semibold text-gray-5 hover:text-gray-900">Doors</h3>
-            @else
+              @else
                 <h3 class="mt-4 text-sm font-semibold text-gray-5 hover:text-gray-900">No doors assigned to this zone</h3>
             @endif
 
@@ -38,6 +38,6 @@
                     <time>Created {{ $zone->created_at->diffForHumans() }}</time>
                 </p>
             </div>
-        </h3>
-    </x-section>
+        </div>
+    </x-content>
 </x-layout>

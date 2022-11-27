@@ -5,6 +5,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ZoneController;
+use App\Models\Door;
 use App\Models\User;
 use App\Models\Zone;
 use Illuminate\Support\Facades\Route;
@@ -24,21 +25,29 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('login', [SessionsController::class, 'create'])->name('login');
-//Route::post('auth', [SessionsController::class, 'store']);
-Route::post('logout', [SessionsController::class, 'destroy'])->name('logout');
-
-Route::get('register', [RegisterController::class, 'create']);
-Route::post('register', [RegisterController::class, 'store']);
-
-Route::resource('users', UserController::class);
-Route::resource('zones', ZoneController::class);
-Route::resource('doors', DoorController::class);
-
-//Route::resource('register')
-
 Route::get('/dashboard', function () {
-    return view('zones.index', [
-        'zones' => request()->user()->zones
+    return view('dashboard', [
+        'zones' => request()->user()->zones,
+        'doors' => request()->user()->doors
     ]);
+})->name('dashboard');
+
+Route::middleware('guest')->group(static function () {
+    Route::get('login', [SessionsController::class, 'create'])
+        ->name('login');
+});
+
+// Admin functionality
+Route::middleware('can:admin')->group(static function () {
+    Route::resource('users', UserController::class);
+    Route::resource('zones', ZoneController::class)->except('show');
+    Route::resource('doors', DoorController::class)->except('show');
+});
+
+// User limited to show for doors/zones
+Route::middleware('auth')->group(static function () {
+    Route::post('logout', [SessionsController::class, 'destroy'])
+        ->name('logout');
+    Route::get('zones/{zone}', [ZoneController::class, 'show'])->name('zones.show');
+    Route::get('doors/{door}', [DoorController::class, 'show'])->name('doors.show');
 });

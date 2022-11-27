@@ -1,6 +1,6 @@
 @props(['zones'])
 <x-layout heading="Edit {{ $door->name }}">
-    <x-section>
+    <x-content>
         <form method="POST" action="/doors/{{ $door->id }}" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
@@ -35,5 +35,5 @@
 
             <x-form.button>Update</x-form.button>
         </form>
-    </x-section>
+    </x-content>
 </x-layout>

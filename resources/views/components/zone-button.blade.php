@@ -5,7 +5,7 @@
            text-xs uppercase font-semibold text-pink-600 whitespace-nowrap text-center
            hover:border-pink-700 hover:text-pink-700 hover:bg-pink-50">
     <div>
-        <a href="/zones/{{ $zone->id }}"
+        <a href="{{ route('zones.show', ['zone' => $zone]) }}"
            style="font-size: 10px">{{ $zone->name }}
         </a>
     </div>

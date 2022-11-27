@@ -1,6 +1,6 @@
 @props(['zones'])
 <x-layout heading="Create New Door">
-    <x-section class="w-96">
+    <x-content class="w-96">
         <form method="POST" action="/doors" enctype="multipart/form-data">
             @csrf
 
@@ -32,6 +32,6 @@
 
             <x-form.button>Add</x-form.button>
         </form>
-    </x-section>
+    </x-content>
 </x-layout>
 

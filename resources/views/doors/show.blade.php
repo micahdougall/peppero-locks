@@ -1,5 +1,5 @@
 <x-layout heading="{{ $door->name }}">
-    <x-section>
+    <x-content>
         <div>
             <div class="flow-root">
                 <div>
@@ -20,7 +20,7 @@
 
             <hr>
 
-            <div class="mt-4 text-sm font-semibold text-gray-5 hover:text-gray-900">
+            <div class="mt-4 text-sm font-semibold text-gray-5 hover:text-pink-500">
                 <a href="/zones/{{ $door->zone ? $door->zone->id : '' }}">
                     {{ $door->zone ? $door->zone->name : 'No Zone' }}
                 </a>
@@ -32,5 +32,5 @@
                 </p>
             </div>
         </div>
-    </x-section>
+    </x-content>
 </x-layout>

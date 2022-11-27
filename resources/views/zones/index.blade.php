@@ -1,3 +1,3 @@
-<x-layout heading="Dashboard">
+<x-layout heading="Zones">
     <x-zones :zones="$zones"/>
 </x-layout>

@@ -27,7 +27,7 @@ class DoorController
         Door::factory()->create($this->validateDoor($door));
         return redirect()
             ->route('doors.index')
-            ->with('success', request('name') . ' created.');
+            ->with('success', request('name') . ' created');
     }
 
     public function create()

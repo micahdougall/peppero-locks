@@ -1,32 +1,12 @@
 <x-layout :heading="'Edit ' . $user->title . ' ' . $user->first_name . ' ' . $user->surname">
-    <x-section>
-{{--    <x-navigation :heading="'Edit ' . $user->title . ' ' . $user->first_name . ' ' . $user->surname" class="max-w-3xl">--}}
-        <form method="POST" action="/users/{{ $user->id }}" enctype="multipart/form-data"
-{{--            x-data="{--}}
-{{--                nationalities: {{ $nationalities }},--}}
-
-{{--                oldNationalities: {{ $user->nationalities }},--}}
-
-{{--                name: 'test'--}}
-{{--            }"--}}
-{{--              x-modelable="name"--}}
-        >
+    <x-content>
+        <form method="POST" action="/users/{{ $user->id }}" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
 
             <x-form.input textarea name="first_name" :value="old('first_name', $user->first_name)"/>
             <x-form.input textarea name="last_name" :value="old('last_name', $user->last_name)"/>
             <x-form.input textarea name="email" :value="old('email', $user->email)"/>
-{{--            <x-form.input textarea name="password" :value="old('password', $user->password)"/>--}}
-
-{{--            <x-form.field>--}}
-{{--                <x-form.label name="Nationalities"/>--}}
-{{--                <div class="flex space-x-2">--}}
-{{--                    @foreach($nationalities as $nationality)--}}
-{{--                        <x-form.nationality-select :nationality="$nationality"/>--}}
-{{--                    @endforeach--}}
-{{--                </div>--}}
-{{--            </x-form.field>--}}
 
             <x-form.error name="first_name"/>
 
@@ -42,7 +22,5 @@
 
             <x-form.button>Update</x-form.button>
         </form>
-
-{{--    </x-navigation>--}}
-    </x-section>
+    </x-content>
 </x-layout>

@@ -1,5 +1,5 @@
 <x-layout :heading="$user->first_name . ' ' . $user->last_name">
-    <x-section class="w-96">
+    <x-content class="w-96">
         <div class="space-y-2">
 
             <div class="flow-root">
@@ -48,5 +48,5 @@
                 </p>
             </div>
         </div>
-    </x-section>
+    </x-content>
 </x-layout>
