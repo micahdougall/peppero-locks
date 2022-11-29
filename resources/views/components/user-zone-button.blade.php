@@ -1,4 +1,4 @@
-@props(['zone'])
+@props(['zone', 'active' => true])
 
 @php
     $classes = 'flex px-2.5 py-1 space-x-1 space-y-1
@@ -9,7 +9,7 @@
 @endphp
 
 <div x-data="{
-      selected: true,
+      selected: {{ $active ? 'true' : 'false' }},
       toggle() { this.selected = ! this.selected }
     }"
     {{ $attributes(['class' => $classes]) }}

@@ -55,6 +55,7 @@
             <li>Doors in alphabetical order</li>
             <li>Delete sessions and register controller</li>
             <li>Check auth users can see dashbpard</li>
+            <li>https://tailwind-elements.com/docs/standard/components/popover/</li>
         </ul>
     </div>
 </x-layout>

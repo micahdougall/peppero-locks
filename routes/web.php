@@ -38,7 +38,8 @@ Route::middleware('auth')->group(static function () {
     Route::get('/dashboard', function () {
         return view('account.dashboard', [
             'zones' => request()->user()->zones,
-            'doors' => request()->user()->doors
+            'doors' => request()->user()->doors,
+            'active' => request()->user()->isActive(),
         ]);
     })->name('account.dashboard');
     Route::get('account/{user}/edit', function () {

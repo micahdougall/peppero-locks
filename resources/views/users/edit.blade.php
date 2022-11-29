@@ -1,9 +1,9 @@
 <x-layout :heading="'Edit ' . $user->title . ' ' . $user->first_name . ' ' . $user->surname">
     <x-content class="w-9/12">
         <form method="POST" action="/users/{{ $user->id }}" enctype="multipart/form-data"
-{{--              x-data="{--}}
-{{--                zones: {{ $user->zones }}--}}
-{{--              }"--}}
+              x-data="{
+                zones: {{ $user->zones }}
+              }"
         >
             @csrf
             @method('PATCH')
@@ -25,7 +25,7 @@
                               float-left mr-2 cursor-pointer"
                                name="admin_flag"
                                id="admin_flag"
-                            @checked(old('admin_flag', $user->admin_flag))
+{{--                            @checked(old('admin_flag', $user->admin_flag))--}}
                         >
                         <label class="form-check-label inline-block font-bold text-xs text-gray-700 block mb-6"
                                for="admin_flag">
@@ -66,13 +66,21 @@
 
                 <div class="flex flex-col max-h-96 w-72">
                     <div class="overflow-hidden hover:overflow-y-scroll overscroll-contain pr-6 pl-2 py-2">
+                        <div class="object-right-top">
+                            <img class="rounded-full shadow w-36 object-right-top"
+                                  src="https://i.pravatar.cc/200?u={{ $user->id }}"
+                                  alt="" style="width: 50px"/>
+                        </div>
                         <div>
                             @if($user->zones->count())
-                                <h3 class="mt-4 text-sm font-semibold text-gray-5 hover:text-gray-900">Zones</h3>
+                                <h3 class="mt-4 text-sm font-semibold text-gray-5 hover:text-gray-900">Zonal Access</h3>
                                 <div class="flex space-x-2 mt-4">
-                                    <div class="grid grid-cols-4 gap-3 place-items-stretch">
+                                    <div class="grid grid-cols-4 gap-2 place-items-stretch">
                                         @foreach ($user->zones as $zone)
                                             <x-user-zone-button :zone="$zone"/>
+                                        @endforeach
+                                        @foreach ($zones as $zone)
+                                            <x-user-zone-button :zone="$zone" :active="false"/>
                                         @endforeach
                                     </div>
                                 </div>
@@ -82,9 +90,9 @@
 
                         <div>
                             @if($user->doors->count())
-                                <h3 class="mt-4 text-sm font-semibold text-gray-5 hover:text-gray-900">Direct Doors</h3>
+                                <h3 class="mt-4 text-sm font-semibold text-gray-5 hover:text-gray-900">Direct Access</h3>
                                 <div class="flex space-x-2 mt-4">
-                                    <div class="grid grid-cols-4 gap-3 place-items-stretch">
+                                    <div class="grid grid-cols-4 gap-2 place-items-stretch">
                                         @foreach ($user->doors as $door)
                                             <x-door-button :door="$door"/>
                                         @endforeach
@@ -92,7 +100,6 @@
                                 </div>
                             @endif
                         </div>
-
                     </div>
                 </div>
             </div>

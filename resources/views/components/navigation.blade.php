@@ -60,7 +60,7 @@
                 </a>
 
                 <x-slot name="header">
-                    <img class="rounded-full shadow w-36"
+                    <img class="rounded-full shadow w-36 grayscale hover:grayscale-0"
                          src="https://i.pravatar.cc/200?u={{ auth()->user()->id }}"
                          alt="" style="width: 50px"/>
                 </x-slot>
