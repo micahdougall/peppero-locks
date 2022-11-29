@@ -2,7 +2,8 @@
     <x-content class="w-9/12">
         <form method="POST" action="/users/{{ $user->id }}" enctype="multipart/form-data"
               x-data="{
-                zones: {{ $user->zones }}
+                zones: {{ $user->zones }},
+                doors: {{ $user->doors }}
               }"
         >
             @csrf
@@ -18,14 +19,14 @@
                     <div class="form-check">
                         <input type="checkbox"
                                class="form-check-input h-4 w-4
-                              border border-gray-300 rounded-sm bg-white
-                              checked:bg-blue-600 checked:border-blue-600
-                              focus:outline-none transition duration-200
-                              mt-1 align-top bg-no-repeat bg-center bg-contain
-                              float-left mr-2 cursor-pointer"
+                               border border-gray-300 rounded-sm bg-white
+                               checked:bg-blue-600 checked:border-blue-600
+                               focus:outline-none transition duration-200
+                               mt-1 align-top bg-no-repeat bg-center bg-contain
+                               float-left mr-2 cursor-pointer"
                                name="admin_flag"
                                id="admin_flag"
-{{--                            @checked(old('admin_flag', $user->admin_flag))--}}
+                            @checked(old('admin_flag', $user->admin_flag))
                         >
                         <label class="form-check-label inline-block font-bold text-xs text-gray-700 block mb-6"
                                for="admin_flag">
@@ -72,33 +73,32 @@
                                   alt="" style="width: 50px"/>
                         </div>
                         <div>
-                            @if($user->zones->count())
-                                <h3 class="mt-4 text-sm font-semibold text-gray-5 hover:text-gray-900">Zonal Access</h3>
-                                <div class="flex space-x-2 mt-4">
-                                    <div class="grid grid-cols-4 gap-2 place-items-stretch">
-                                        @foreach ($user->zones as $zone)
-                                            <x-user-zone-button :zone="$zone"/>
-                                        @endforeach
-                                        @foreach ($zones as $zone)
-                                            <x-user-zone-button :zone="$zone" :active="false"/>
-                                        @endforeach
-                                    </div>
+                            <h3 class="mt-4 text-sm font-semibold text-gray-5 hover:text-gray-900">Zonal Access</h3>
+                            <div class="flex space-x-2 mt-4">
+                                <div class="grid grid-cols-4 gap-2 place-items-stretch">
+                                    @foreach ($user->zones as $zone)
+                                        <x-user-zone-button :zone="$zone"/>
+                                    @endforeach
+                                    @foreach ($zones as $zone)
+                                        <x-user-zone-button :zone="$zone" :active="false"/>
+                                    @endforeach
                                 </div>
-                                <hr class="mt-6">
-                            @endif
+                            </div>
+                            <hr class="mt-6">
                         </div>
 
                         <div>
-                            @if($user->doors->count())
-                                <h3 class="mt-4 text-sm font-semibold text-gray-5 hover:text-gray-900">Direct Access</h3>
-                                <div class="flex space-x-2 mt-4">
-                                    <div class="grid grid-cols-4 gap-2 place-items-stretch">
-                                        @foreach ($user->doors as $door)
-                                            <x-door-button :door="$door"/>
-                                        @endforeach
-                                    </div>
+                            <h3 class="mt-4 text-sm font-semibold text-gray-5 hover:text-gray-900">Direct Access</h3>
+                            <div class="flex space-x-2 mt-4">
+                                <div class="grid grid-cols-4 gap-2 place-items-stretch">
+                                    @foreach ($user->doors as $door)
+                                        <x-user-door-button :door="$door"/>
+                                    @endforeach
+                                    @foreach ($doors as $door)
+                                        <x-user-door-button :door="$door" :active="false"/>
+                                    @endforeach
                                 </div>
-                            @endif
+                            </div>
                         </div>
                     </div>
                 </div>
