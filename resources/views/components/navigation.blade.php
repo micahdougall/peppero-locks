@@ -47,9 +47,18 @@
     @auth
         <div class="place-self-end">
             <x-menu>
-                <x-menu-item :route="'dashboard'">
+                <x-menu-item :route="'account.dashboard'">
                     Dashboard
                 </x-menu-item>
+
+                <a href="{{ route('account.edit', ['user' => auth()->user()]) }}"
+                    @class([
+                         'block hover:bg-emerald-500 hover:text-white text-sm px-4 py-1',
+                         'text-white bg-cyan-500' => Route::currentRouteName() == route('account.edit', ['user' => auth()->user()])
+                     ])>
+                    My Account
+                </a>
+
                 <x-slot name="header">
                     <img class="rounded-full shadow w-36"
                          src="https://i.pravatar.cc/200?u={{ auth()->user()->id }}"

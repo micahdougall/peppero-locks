@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Zone;
 use Illuminate\Validation\Rule;
 
 class UserController

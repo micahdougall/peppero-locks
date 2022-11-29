@@ -22,7 +22,10 @@
                         {{ $user->email }}
                     </p>
                     @if($user->isAdmin())
-                        <p class="text-red-600 text-xs uppercase font-semibold">Admin</p>
+                        <p class="text-purple-500 text-xs uppercase font-semibold">Admin</p>
+                    @endif
+                    @if(!$user->isActive())
+                        <p class="text-red-600 text-xs uppercase font-semibold">Expired</p>
                     @endif
                 </div>
             </div>
@@ -36,7 +39,7 @@
             @endif
 
             <div class="flex space-x-2 mt-4">
-                <div class="grid grid-cols-5 gap-4 place-items-stretch">
+                <div class="grid grid-cols-5 gap-3 place-items-stretch">
                     @foreach ($user->zones as $zone)
                         <x-zone-button :zone="$zone"/>
                     @endforeach

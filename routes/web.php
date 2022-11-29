@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\DoorController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
@@ -25,18 +26,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard', [
-        'zones' => request()->user()->zones,
-        'doors' => request()->user()->doors
-    ]);
-})->name('dashboard');
-
-Route::middleware('guest')->group(static function () {
-    Route::get('login', [SessionsController::class, 'create'])
-        ->name('login');
-});
-
 // Admin functionality
 Route::middleware('can:admin')->group(static function () {
     Route::resource('users', UserController::class);
@@ -46,8 +35,18 @@ Route::middleware('can:admin')->group(static function () {
 
 // User limited to show for doors/zones
 Route::middleware('auth')->group(static function () {
-    Route::post('logout', [SessionsController::class, 'destroy'])
-        ->name('logout');
+    Route::get('/dashboard', function () {
+        return view('account.dashboard', [
+            'zones' => request()->user()->zones,
+            'doors' => request()->user()->doors
+        ]);
+    })->name('account.dashboard');
+    Route::get('account/{user}/edit', function () {
+        return view('account.edit', [
+            'user' => request()->user()
+        ]);
+    })->name('account.edit');
+    Route::patch('account/{user}', [AccountController::class, 'update'])->name('account.update');
     Route::get('zones/{zone}', [ZoneController::class, 'show'])->name('zones.show');
     Route::get('doors/{door}', [DoorController::class, 'show'])->name('doors.show');
 });

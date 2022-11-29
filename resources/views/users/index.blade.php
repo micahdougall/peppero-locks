@@ -12,22 +12,22 @@
             <tbody class="bg-white divide-y divide-gray-200">
             @foreach($users as $user)
                 <tr>
-                    <x-table.cell>
+                    <x-table.cell :active="$user->isActive()">
                         <a href="{{ route('users.show', ['user' => $user]) }}">
                             {{ $user->first_name . ' ' . $user->last_name }}
                         </a>
                     </x-table.cell>
-                    <x-table.cell>
+                    <x-table.cell :active="$user->isActive()">
                         <a href="{{ route('users.show', ['user' => $user]) }}">
                             {{ $user->email }}
                         </a>
                     </x-table.cell>
-                    <x-table.cell class="text-center">
+                    <x-table.cell class="text-center" :active="$user->isActive()">
                         <a href="{{ route('users.show', ['user' => $user]) }}">
                             {{ $user->isAdmin() ? 'Yes' : 'No' }}
                         </a>
                     </x-table.cell>
-                    <x-table.cell class="text-center">
+                    <x-table.cell class="text-center" :active="$user->isActive()">
                         <a href="{{ route('users.show', ['user' => $user]) }}">
                             {{ count($user->zones) }}
                         </a>

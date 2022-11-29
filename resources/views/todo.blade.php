@@ -53,6 +53,8 @@
 {{--            <li>Cancel when editting</li>--}}
 {{--            <li>Default value calendar</li>--}}
             <li>Doors in alphabetical order</li>
+            <li>Delete sessions and register controller</li>
+            <li>Check auth users can see dashbpard</li>
         </ul>
     </div>
 </x-layout>
