@@ -19,7 +19,7 @@ class DoorFactory extends Factory
     {
         return [
             'id' => fake()->unique()->randomNumber(4),
-            'name' => fake()->word
+            'name' => 'DR-' . fake()->randomNumber(4)
         ];
     }
 }

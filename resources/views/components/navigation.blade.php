@@ -3,14 +3,7 @@
 <nav class="mx-auto max-w-4xl grid grid-cols-3 mb-2 pb-2 border-b items-center">
 
     <div class="flex items-center space-x-4">
-        @if(URL::previous() != Route::currentRouteName() && Route::currentRouteName() != 'home')
-            <a href="{{ URL::previous() }}"
-               class="px-6 py-2 rounded shadow-md
-                          text-gray-600 font-bold text-xs
-                          hover:bg-pink-400 hover:text-white focus:outline-none focus:ring hover:shadow-lg">
-                &#8592
-            </a>
-        @endif
+        <x-back/>
         <h1 class="text-lg font-bold text-sky-500">
             {{ $heading }}
         </h1>

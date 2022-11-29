@@ -15,8 +15,14 @@ return new class extends Migration
     {
         Schema::create('zonal_access', function (Blueprint $table) {
             $table->primary(['user_id', 'zone_id']);
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('zone_id')->constrained('zones')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreignId('zone_id')
+                ->constrained('zones')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -33,7 +33,7 @@
                 <x-form.error name="zone_id"/>
             </x-form.field>
 
-            <x-form.button>Update</x-form.button>
+            <x-form.button :back="'doors.index'">Update</x-form.button>
         </form>
     </x-content>
 </x-layout>

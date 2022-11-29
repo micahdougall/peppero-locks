@@ -41,7 +41,7 @@
                         </a>
                     </x-table.cell>
                     <x-table.cell>
-                        <form method="POST" action="{{ route('users.destroy', ['user' => $user]) }}"
+                        <form method="POST" action="{{ route('users.destroy', ['user' => $user]) }}">
                             @csrf
                             @method('DELETE')
 

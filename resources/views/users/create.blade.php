@@ -8,14 +8,13 @@
             <x-form.input name="email"/>
 
             <div class="form-check">
-                <input class="form-check-input h-4 w-4
+                <input type="checkbox"
+                       class="form-check-input h-4 w-4
                               border border-gray-300 rounded-sm bg-white
                               checked:bg-blue-600 checked:border-blue-600
                               focus:outline-none transition duration-200
                               mt-1 align-top bg-no-repeat bg-center bg-contain
                               float-left mr-2 cursor-pointer"
-                       type="checkbox"
-                       value=""
                        name="admin_flag"
                        id="admin_flag"
                 >
@@ -51,6 +50,7 @@
                        placeholder="Select date"
                        id="expiry_date"
                        name="expiry_date"
+                       value="{{ Carbon\Carbon::now()->addYear()->format('m/d/Y') }}"
                 >
             </div>
 
@@ -64,7 +64,7 @@
 {{--                </div>--}}
 {{--            @endif--}}
 
-            <x-form.button>Add</x-form.button>
+            <x-form.button :back="'users.index'">Add</x-form.button>
         </form>
 
     </x-content>

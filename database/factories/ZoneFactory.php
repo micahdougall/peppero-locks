@@ -18,7 +18,7 @@ class ZoneFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->word
+            'name' => 'Zone ' . fake()->unique()->randomNumber(2),
         ];
     }
 }

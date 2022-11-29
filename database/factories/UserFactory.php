@@ -22,14 +22,12 @@ class UserFactory extends Factory
         return [
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
-//            'username' => fake()->userName(),
-            'email' => fake()->email(),
-            'admin_flag' => false,
-            // Expires on a random date in next 5 years
-            'expiry_date' => Carbon::now()->addDays(rand(1, 5 * 365))->toDate(),
-//            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'password' => bcrypt('password')
-//            'remember_token' => Str::random(10),
+            'email' => fake()->unique()->safeEmail(),
+            'admin_flag' => fake()->boolean(),
+            'expiry_date' => fake()->dateTimeBetween('-1 years', '+1 year'),
+            'email_verified_at' => now(),
+            'password' => 'password',
+            'remember_token' => Str::random(10),
         ];
     }
 }

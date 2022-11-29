@@ -6,7 +6,7 @@
 
             <x-form.input name="name" :value="old('name', $zone->name)"/>
 
-            <x-form.button>Update</x-form.button>
+            <x-form.button :back="'zones.index'">Update</x-form.button>
         </form>
     </x-content>
 </x-layout>

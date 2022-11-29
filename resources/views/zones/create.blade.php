@@ -5,7 +5,7 @@
 
             <x-form.input name="name"/>
 
-            <x-form.button>Add</x-form.button>
+            <x-form.button :back="'zones.index'">Add</x-form.button>
         </form>
     </x-content>
 </x-layout>

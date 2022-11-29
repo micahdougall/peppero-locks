@@ -10,7 +10,7 @@
             <li>Mail intercept</li>
             <li>Read slides</li>
             <li>Read coursework brief</li>
-            <li>Compare with Randell's version</li>
+{{--            <li>Compare with Randell's version</li>--}}
 {{--            <li>Logout via user avatar</li>--}}
             <li>Add readme</li>
             <li>Test thoroughly</li>
@@ -48,8 +48,11 @@
             <li>Add pop-up for delete</li>
 {{--            <li>spacing for users show with back button</li>--}}
             <li>Expired users!</li>
-            <li>Add fixed for CW1</li>
+{{--            <li>Add fixed for CW1</li>--}}
             <li>Fix grow length</li>
+{{--            <li>Cancel when editting</li>--}}
+{{--            <li>Default value calendar</li>--}}
+            <li>Doors in alphabetical order</li>
         </ul>
     </div>
 </x-layout>

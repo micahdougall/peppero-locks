@@ -44,7 +44,6 @@
             {{ $slot }}
         </div>
 
-
         <footer class="mx-auto max-w-4xl mb-6">
             <div class="mx-auto bg-gray-50 border border-black border-opacity-5 rounded-xl text-center py-8 mb-2 max-w-4xl">
                 <p class="text-sm mb-0 text-gray-400">made with</p>

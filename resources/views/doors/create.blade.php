@@ -30,8 +30,8 @@
                 <x-form.error name="zone_id"/>
             </x-form.field>
 
-            <x-form.button>Add</x-form.button>
-        </form>
+            <x-form.button :back="'doors.index'">Add</x-form.button>
+    </form>
     </x-content>
 </x-layout>
 

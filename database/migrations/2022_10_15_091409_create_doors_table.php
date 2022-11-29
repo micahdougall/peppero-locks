@@ -19,7 +19,7 @@ return new class extends Migration {
                 ->constrained('zones')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->timestamps();
         });
     }
