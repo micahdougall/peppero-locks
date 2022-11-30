@@ -51,7 +51,7 @@
             </x-table.frame>
         @else
             <p class="ext-xs leading-5 font-semibold text-gray-400">
-                No zones have been assigned to you
+                No zones exist, please create a new zone
             </p>
         @endif
 

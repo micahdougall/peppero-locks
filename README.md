@@ -2,7 +2,7 @@
     <h1 align="center" style="color:darkgoldenrod; font-family: verdana;">
         Peppero Locks
     </h1>
-    <div><img src="padlock" width="100" alt="Peppero Locks Logo"></div>
+    <div><img src="public/images/peppero.png" width="100" alt="Peppero Locks Logo"></div>
 <hr>
     <a href="https://github.com/micahdougall/peppero-locks">
         <img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status">
@@ -11,7 +11,36 @@
 [//]: # (    <div>&#128540;</div>)
 </div>
 
-# tl;dr 
+# Coursework 2
+
+## Set up
+
+This Web App uses Tailwind and Alpine as its choice CSS and JS frameworks. The import for these are included in the `layout.blade.php` and should automatically load when deploying the site locally.
+
+If styling is absent, try running:
+
+```bash
+npm install -D tailwindcss
+npx tailwindcss init
+```
+
+Or see https://tailwindcss.com/docs/installation.
+
+## Functionality
+
+All functionality has been completed and should be intuitive to navigate. A few pointers in case certain functionality can't be found:
+
+* In the `Manage Users` section, expired users are show in grey. The Zone total includes the total number of zones accessible. Full user details can then be further viewed by drilling down in the table.
+* When editing users (via the edit button in the Users table), Zones and Doors can be added or taken away using the coloured/greyed out zone/door buttons.
+* If as a user, no doors and zones are displayed on the dashboard, you may be expired. Please edit your expiry date using an admin user.
+* From the dashboard, Door and Zone details can be further viewed by drilling down into the cards (as can Zones from a User card).
+* No warning is currently offered for deleting users. If you delete yourself as an admin, you will lose authorisation immediately.
+* If a zone is deleted, all its doors will also be deleted.
+
+**NB: Additional functionality has been added such that Doors and Zones can also be deleted and editted.**
+
+
+# Coursework 1
 
 This README.md details the Eloquent Model relationships and functionality included in *Peppero Locks*. It is best rendered in an IDE which provides links to classes and migrations (contents page links will work in VSCode but not PHPStorm).
 
