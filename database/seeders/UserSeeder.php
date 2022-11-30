@@ -6,6 +6,7 @@ use App\Models\Door;
 use App\Models\User;
 use App\Models\Zone;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -25,6 +26,39 @@ class UserSeeder extends Seeder
 
         /** @var array<\App\Models\Door> $doors All seeded Doors */
         $doors = Door::all()->toArray();
+
+        // Create 10 more Users.
+        $users = User::factory(self::USER_COUNT)->create();
+
+        // Ensure that at least one User is expired.
+        try {
+            $expireUser = User::query()->where([
+                ['expiry_date', '>', Carbon::now()],
+                ['admin_flag', false],
+            ])->whereNotIn('email', ['joebloggs@example.com'])
+                ->firstOrFail();
+            $expireUser->update(
+                ['expiry_date' => Carbon::now()->subDays(1)->toDate()]
+            );
+        } catch (ModelNotFoundException $e) {
+            print("No active users available: {$e}");
+        }
+
+        // Ensure that at least one Admin is expired.
+        try {
+            $expireAdmin = User::query()->where([
+                ['expiry_date', '>', Carbon::now()],
+                ['admin_flag', true],
+            ])->whereNotIn(
+                'email',
+                ['randellgaya@example.com', 'liamoreilly@example.com', ]
+            )->firstOrFail();
+            $expireAdmin->update(
+                ['expiry_date' => Carbon::now()->subDays(1)->toDate()]
+            );
+        } catch (ModelNotFoundException $e) {
+            print("No active users available: {$e}");
+        }
 
         // Control admins.
         $randell = User::factory()->create([
@@ -49,15 +83,14 @@ class UserSeeder extends Seeder
             'first_name' => 'Joe',
             'last_name' => 'Bloggs',
             'email' => 'joebloggs@example.com',
+            'admin_flag' => false,
             'expiry_date' => Carbon::now()->addYear(),
             'password' => 'secret'
         ]);
 
-        // Create 10 more Users and attach doors and zones to each.
-        $users = User::factory(self::USER_COUNT)->create()
-            ->merge([$randell, $liam, $joe]);
-
-        foreach ($users as $user) {
+        // Attach doors and zones randomly to all users
+        $allUsers = $users->merge([$randell, $liam, $joe]);
+        foreach ($allUsers as $user) {
             $user->zones()->attach(
                 array_map(
                 // Create an array of random size from the Door ids.
@@ -71,32 +104,6 @@ class UserSeeder extends Seeder
                     static fn ($i) => $doors[$i]['id'],
                     (array) array_rand($doors, rand(1, count($doors)))
                 )
-            );
-        }
-
-        // Ensure that at least one User is expired.
-        $expireUser = User::query()->where([
-            ['expiry_date', '>', Carbon::now()],
-            ['admin_flag', false],
-        ])->whereNotIn('email', ['joebloggs@example.com'])
-            ->first();
-        if($expireUser->exists()) {
-            $expireUser->update(
-                ['expiry_date' => Carbon::now()->subDays(1)->toDate()]
-            );
-        }
-
-        // Ensure that at least one Admin is expired.
-        $expireAdmin = User::query()->where([
-            ['expiry_date', '>', Carbon::now()],
-            ['admin_flag', true],
-        ])->whereNotIn(
-            'email',
-            ['randellgaya@example.com', 'liamoreilly@example.com', ]
-        )->first();
-        if($expireAdmin->exists()) {
-            $expireAdmin->update(
-                ['expiry_date' => Carbon::now()->subDays(1)->toDate()]
             );
         }
     }
